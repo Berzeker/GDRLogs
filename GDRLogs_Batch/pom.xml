@@ -1,0 +1,80 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>fr.laposte.gdrlogs</groupId>
+  <artifactId>GDRLogs_Batch</artifactId>
+  <version>0.0.1</version>
+  <packaging>jar</packaging>
+
+  <name>gdrlogs_batch</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+  
+  	<!-- Spring Batch Project -->
+  	<dependency>
+		<groupId>org.springframework.batch</groupId>
+		<artifactId>spring-batch-core</artifactId>
+		<version>2.2.3.RELEASE</version>
+	</dependency>
+	
+	<!-- Lombok Project -->
+	<dependency>
+		<groupId>org.projectlombok</groupId>
+		<artifactId>lombok</artifactId>
+		<version>1.12.2</version>
+	</dependency>
+	
+	<!-- Injection de dépendance -->
+	<dependency>
+		<groupId>javax.inject</groupId>
+		<artifactId>javax.inject</artifactId>
+		<version>1</version>
+	</dependency>
+	
+	<!-- Guava Librairie -->
+	<dependency>
+		<groupId>com.google.guava</groupId>
+		<artifactId>guava</artifactId>
+		<version>15.0</version>
+	</dependency>
+      
+    <!-- GDRLogs_Persistance -->  
+    <dependency>
+		<groupId>fr.laposte.gdrlogs</groupId>
+  		<artifactId>GDRLogs_Persistance</artifactId>
+  		<version>0.0.1</version>
+	</dependency>
+	
+	<!-- Apache commons-lang Librairie -->
+	<dependency>
+		<groupId>org.apache.commons</groupId>
+  		<artifactId>commons-lang3</artifactId>
+ 	 	<version>3.1</version>
+	</dependency>
+                  
+  </dependencies>
+  
+  
+  <build>
+		<finalName>spring-batch</finalName>
+		<plugins>
+		  <plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>2.3.2</version>
+			<configuration>
+				<source>1.6</source>
+				<target>1.6</target>
+			</configuration>
+		  </plugin>
+		</plugins>
+	</build>
+
+  
+</project>

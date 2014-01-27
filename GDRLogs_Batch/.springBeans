@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[3.3.0.201307091516-RELEASE]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[false]]></enableImports>
+	<configs>
+		<config>src/main/resource/spring/config/JPA-Context.xml</config>
+		<config>src/main/resource/spring/config/Database-Context.xml</config>
+		<config>src/main/resource/spring/jobs/MagieLog-Job.xml</config>
+		<config>src/main/resource/spring/jobs/SystemLog-Job.xml</config>
+		<config>src/main/resource/spring/config/Cache-Context.xml</config>
+	</configs>
+	<configSets>
+	</configSets>
+</beansProjectDescription>

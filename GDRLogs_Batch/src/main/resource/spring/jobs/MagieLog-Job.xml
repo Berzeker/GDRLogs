@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:batch="http://www.springframework.org/schema/batch"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.3.xsd
+		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<!-- Domain -->
+	<bean id="logFile" class="fr.laposte.gdrlogs.domain.LogFile" scope="prototype"/>
+	
+	
+	<!-- ItemReader -->
+	<bean id="magieLogReader" class="org.springframework.batch.item.file.MultiResourceItemReader">
+		<property name="resources" value="file:F:/Atelier/testslogs/*/appli/*.log"></property>
+		<property name="delegate" ref="flatMagieFileItemReader"></property>
+	</bean>
+	
+	<bean id="flatMagieFileItemReader" class="org.springframework.batch.item.file.FlatFileItemReader">
+		<property name="lineMapper">
+			<bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+				<!-- Decoupage de la ligne -->
+				<property name="lineTokenizer">
+					<bean class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
+						<property name="names" value="type,dateApparition,categorie,uri,session,methode,etape,messagelog"></property>	
+						<property name="delimiter" value=";"></property>
+						<property name="strict" value="false"></property>
+					</bean>
+				</property>
+				
+				<!-- Désérialisation de la ligne -->
+				<property name="fieldSetMapper">
+					<bean class="org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper">
+						<property name="prototypeBeanName" value="logFile"></property>
+					</bean>
+				</property>	
+			</bean>
+		</property>
+	</bean>
+	
+	
+	<!-- Item Processor -->
+	<bean id="magieLogProcessor" class="fr.laposte.gdrlogs.processor.MagieLogProcessor" init-method="postConstruct"></bean>
+	
+	<!-- Item Writer -->
+	<bean id="magieLogWriter" class="fr.laposte.gdrlogs.writer.MagieLogWriter"></bean>
+
+</beans>

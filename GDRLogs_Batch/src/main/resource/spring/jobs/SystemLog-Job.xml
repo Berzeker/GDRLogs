@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:batch="http://www.springframework.org/schema/batch"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+	
+	
+	<!-- Domain -->
+	<bean id="logFile" class="fr.laposte.gdrlogs.domain.LogFile" scope="prototype"/>
+	
+	
+	<!-- Item Reader -->
+	<bean id="systemLogReader" class="org.springframework.batch.item.file.MultiResourceItemReader">
+		<property name="resources" value="file:F:/Atelier/testslogs/2013_12_15/SystemOut/gpa00648_SystemOut.log"></property>
+		<property name="delegate" ref="flatSystemFileItemReader"></property>
+	</bean>
+	
+	<bean id="flatSystemFileItemReader" class="org.springframework.batch.item.file.FlatFileItemReader">
+		<property name="lineMapper">
+			<bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+				<property name="lineTokenizer">
+					<bean class="org.springframework.batch.item.file.transform.PatternMatchingCompositeLineTokenizer">
+						<property name="tokenizers">
+							<map>
+								<entry key="*" value-ref="allLineTokenizer"></entry>
+							</map>
+						</property>
+					</bean>
+				</property>
+				<property name="fieldSetMapper">
+					<bean class="org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper">
+						<property name="prototypeBeanName" value="logFile"></property>
+					</bean>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	
+	<!-- Tokenizers -->
+	<bean id="allLineTokenizer" class="org.springframework.batch.item.file.transform.FixedLengthTokenizer">
+		<property name="names" value="messageLog"></property>
+		<property name="columns" value="1"></property>
+		<property name="strict" value="false"></property>
+	</bean>
+	
+	
+	<!-- Item Processor -->
+	<bean id="systemLogProcessor" class="fr.laposte.gdrlogs.processor.SystemLogProcessor"
+		init-method="postConstruct"></bean>
+	
+	<!-- Item Writer -->
+	<bean id="systemLogWriter" class="fr.laposte.gdrlogs.writer.SystemLogWriter"></bean>
+
+</beans>
