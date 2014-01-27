@@ -1,7 +1,5 @@
 package fr.laposte.gdrlogs.persistance.model;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,29 +13,22 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="MAGIELOG", schema="FM3MAGIE_LOG")
-@SequenceGenerator(name="seqMagieLog", sequenceName="SEQMAGIELOG", schema="FM3MAGIE_LOG")
+@Table(name="ALERTE", schema="FM3MAGIE_LOG")
+@SequenceGenerator(name="seqAlerte", sequenceName="SEQALERTE", schema="FM3MAGIE_LOG")
 @Data
 @NoArgsConstructor
-public class MagieLog {
+public class Alerte {
 
 	@Id
 	@Column(name="ID")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqMagieLog")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqAlerte")
 	private Long id;
-	
-	@Column(name="TYPE")
-	private String type;
-	
-	@Column(name="DATEAPPARITION")
-	private Date dateApparition;
-	
-	@Lob
-	@Column(name="METHODE")
-	private String methode;
 	
 	@Lob
 	@Column(name="LOG")
 	private String log;
-
+	
+	@Column(name="ALERTE")
+	private boolean alerte;
+	
 }

@@ -23,14 +23,14 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name="SYSOUTLOG", schema="FM3MAGIE_LOG")
-@SequenceGenerator(name="seqSysOutLog", sequenceName="SEQSYSOUTLOG")
+@SequenceGenerator(name="seqSysOutLog", sequenceName="SEQSYSOUTLOG", schema="FM3MAGIE_LOG")
 @Data
 @NoArgsConstructor
 public class SysOutLog {
 
 	@Id
 	@Column(name="ID")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqSysOutLog")
 	private Long id;
 	
 	@Column(name="DATEAPPARITION")
