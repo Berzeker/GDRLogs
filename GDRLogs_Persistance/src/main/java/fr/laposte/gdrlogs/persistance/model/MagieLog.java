@@ -23,7 +23,7 @@ public class MagieLog {
 
 	@Id
 	@Column(name="ID")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqMagieLog")
 	private Long id;
 	
 	@Column(name="TYPE")
