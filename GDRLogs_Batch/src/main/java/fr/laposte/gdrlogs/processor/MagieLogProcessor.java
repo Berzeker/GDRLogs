@@ -12,7 +12,6 @@ import javax.inject.Inject;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.batch.item.ItemProcessor;
-import org.springframework.beans.factory.annotation.Value;
 
 import fr.laposte.gdrlogs.domain.LogFile;
 import fr.laposte.gdrlogs.persistance.dao.MagieLogDao;
@@ -27,7 +26,6 @@ public class MagieLogProcessor implements ItemProcessor<LogFile, MagieLog> {
 	@Inject
 	private MagieLogDao logRepository;
 	
-	@Value("${log.fullscan}")
 	private boolean logFullScan;
 	
 	/**
@@ -45,6 +43,8 @@ public class MagieLogProcessor implements ItemProcessor<LogFile, MagieLog> {
 	 * Methode d'initialisation après construction du bean
 	 */
 	public void postConstruct() {
+		
+		logFullScan = true;
 		
 		Calendar calendrier2 = Calendar.getInstance();
 		calendrier2.set(Calendar.HOUR, 0);

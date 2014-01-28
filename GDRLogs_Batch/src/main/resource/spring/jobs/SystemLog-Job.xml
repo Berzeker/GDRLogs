@@ -13,8 +13,8 @@
 	
 	
 	<!-- Item Reader -->
-	<bean id="systemLogReader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="file:F:/Atelier/testslogs/2013_12_15/SystemOut/gpa00648_SystemOut.log"></property>
+	<bean id="systemLogReader" class="org.springframework.batch.item.file.MultiResourceItemReader" scope="step">
+		<property name="resources" value="file:/home/was61/sauvegarde/FM3/traces/#{jobParameters['dossier']}/SystemOut/*.log"></property>
 		<property name="delegate" ref="flatSystemFileItemReader"></property>
 	</bean>
 	

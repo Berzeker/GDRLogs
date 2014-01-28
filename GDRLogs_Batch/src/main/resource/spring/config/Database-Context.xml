@@ -6,10 +6,10 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 		<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="org.h2.Driver"></property>
-		<property name="url" value="jdbc:h2:tcp://localhost/~/FM3MAGIE_LOG;schema=FM3MAGIE_LOG;MODE=Oracle;COLLATION=FRENCH;MVCC=true"></property>
-		<property name="username" value="SA"></property>
-		<property name="password" value=""></property>
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+		<property name="url" value="jdbc:oracle:thin:@220.140.173.34:1551:FN1ARCA"></property>
+		<property name="username" value="FM3MAGIE_LOG"></property>
+		<property name="password" value="FM3MAGIE_LOG"></property>
 	</bean>
 	 
 	<jdbc:initialize-database data-source="dataSource">

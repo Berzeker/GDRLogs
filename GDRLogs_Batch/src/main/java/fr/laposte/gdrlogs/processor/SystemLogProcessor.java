@@ -11,7 +11,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.batch.item.ItemProcessor;
-import org.springframework.beans.factory.annotation.Value;
 
 import com.google.common.cache.Cache;
 
@@ -43,7 +42,6 @@ public class SystemLogProcessor implements ItemProcessor<LogFile, SysOutLog> {
 	/**
 	 * Indicateur si le traitement doit réaliser un full scan
 	 */
-	@Value("${log.fullscan}")
 	private boolean logFullScan;
 	
 	/**
@@ -61,6 +59,8 @@ public class SystemLogProcessor implements ItemProcessor<LogFile, SysOutLog> {
 	 * Méthode d'initialisation du bean après injection des dépendances
 	 */
 	public void postConstruct() {
+		
+		logFullScan = true;
 		
 		//initialisation de l'indicateur de lecture des logs
 		isLectureAutorised = true;
