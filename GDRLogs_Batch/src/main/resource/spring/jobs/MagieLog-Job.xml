@@ -17,7 +17,8 @@
 	
 	<!-- ItemReader -->
 	<bean id="magieLogReader" class="org.springframework.batch.item.file.MultiResourceItemReader" scope="step">
-		<property name="resources" value="file:/home/was61/sauvegarde/FM3/traces/#{jobParameters['dossier']}/appli/*.log"></property>
+<!-- 		<property name="resources" value="file:/home/was61/sauvegarde/FM3/traces/#{jobParameters['dossier']}/appli/*.log"></property> -->
+		<property name="resources" value="file:F:/Atelier/testslogs/*/appli/*.log"></property>
 		<property name="delegate" ref="flatMagieFileItemReader"></property>
 	</bean>
 	

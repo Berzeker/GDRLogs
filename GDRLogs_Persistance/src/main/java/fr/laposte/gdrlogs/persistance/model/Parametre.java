@@ -8,19 +8,14 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 @Entity
 @Table(name="PARAMETRE", schema="FM3MAGIE_LOG")
 @SequenceGenerator(name="seqParametre", sequenceName="SEQPARAMETRE", schema="FM3MAGIE_LOG")
-@Data
-@NoArgsConstructor
 public class Parametre {
 	
 	@Id
 	@Column(name="ID")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqParametre")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(name="CODE")
@@ -28,5 +23,53 @@ public class Parametre {
 	
 	@Column(name="VALEUR")
 	private String valeur;
+
+	/**
+	 * Constructor
+	 */
+	public Parametre() {
+	}
+
+	/**
+	 * @return the id
+	 */
+	public Long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the code
+	 */
+	public String getCode() {
+		return code;
+	}
+
+	/**
+	 * @param code the code to set
+	 */
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	/**
+	 * @return the valeur
+	 */
+	public String getValeur() {
+		return valeur;
+	}
+
+	/**
+	 * @param valeur the valeur to set
+	 */
+	public void setValeur(String valeur) {
+		this.valeur = valeur;
+	}
 
 }

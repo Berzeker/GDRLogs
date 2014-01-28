@@ -9,19 +9,14 @@ import javax.persistence.Lob;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 @Entity
 @Table(name="ALERTE", schema="FM3MAGIE_LOG")
 @SequenceGenerator(name="seqAlerte", sequenceName="SEQALERTE", schema="FM3MAGIE_LOG")
-@Data
-@NoArgsConstructor
 public class Alerte {
 
 	@Id
 	@Column(name="ID")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqAlerte")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
 	@Lob
@@ -30,5 +25,55 @@ public class Alerte {
 	
 	@Column(name="ALERTE")
 	private boolean alerte;
+	
+	
+	/**
+	 * Constructor
+	 */
+	public Alerte() {}
+
+	/**
+	 * @return the id
+	 */
+	public Long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the log
+	 */
+	public String getLog() {
+		return log;
+	}
+
+	/**
+	 * @param log the log to set
+	 */
+	public void setLog(String log) {
+		this.log = log;
+	}
+
+	/**
+	 * @return the alerte
+	 */
+	public boolean isAlerte() {
+		return alerte;
+	}
+
+	/**
+	 * @param alerte the alerte to set
+	 */
+	public void setAlerte(boolean alerte) {
+		this.alerte = alerte;
+	}
+	
+	
 	
 }

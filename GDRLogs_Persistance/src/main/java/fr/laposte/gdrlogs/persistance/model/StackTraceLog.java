@@ -9,24 +9,53 @@ import javax.persistence.Lob;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 
 @Entity
 @Table(name="STACKTRACELOG", schema="FM3MAGIE_LOG")
 @SequenceGenerator(name="seqStackTraceLog", sequenceName="SEQSTACKTRACELOG", schema="FM3MAGIE_LOG")
-@Data
-@NoArgsConstructor
 public class StackTraceLog {
 
 	@Id
 	@Column(name="ID")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqStackTraceLog")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
 	@Lob
 	@Column(name="MESSAGELOG")
 	private String messageLog;
+
+	/**
+	 * Constructor
+	 */
+	public StackTraceLog() {
+	}
+
+	/**
+	 * @return the id
+	 */
+	public Long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the messageLog
+	 */
+	public String getMessageLog() {
+		return messageLog;
+	}
+
+	/**
+	 * @param messageLog the messageLog to set
+	 */
+	public void setMessageLog(String messageLog) {
+		this.messageLog = messageLog;
+	}
 	
 }

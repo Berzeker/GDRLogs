@@ -11,19 +11,14 @@ import javax.persistence.Lob;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 @Entity
 @Table(name="MAGIELOG", schema="FM3MAGIE_LOG")
 @SequenceGenerator(name="seqMagieLog", sequenceName="SEQMAGIELOG", schema="FM3MAGIE_LOG")
-@Data
-@NoArgsConstructor
 public class MagieLog {
 
 	@Id
 	@Column(name="ID")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqMagieLog")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(name="TYPE")
@@ -40,4 +35,80 @@ public class MagieLog {
 	@Column(name="LOG")
 	private String log;
 
+	/**
+	 * Constructor
+	 */
+	public MagieLog() {
+	}
+
+	/**
+	 * @return the id
+	 */
+	public Long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the type
+	 */
+	public String getType() {
+		return type;
+	}
+
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	/**
+	 * @return the dateApparition
+	 */
+	public Date getDateApparition() {
+		return dateApparition;
+	}
+
+	/**
+	 * @param dateApparition the dateApparition to set
+	 */
+	public void setDateApparition(Date dateApparition) {
+		this.dateApparition = dateApparition;
+	}
+
+	/**
+	 * @return the methode
+	 */
+	public String getMethode() {
+		return methode;
+	}
+
+	/**
+	 * @param methode the methode to set
+	 */
+	public void setMethode(String methode) {
+		this.methode = methode;
+	}
+
+	/**
+	 * @return the log
+	 */
+	public String getLog() {
+		return log;
+	}
+
+	/**
+	 * @param log the log to set
+	 */
+	public void setLog(String log) {
+		this.log = log;
+	}
+	
 }
