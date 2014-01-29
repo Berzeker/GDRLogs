@@ -15,9 +15,6 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import org.dozer.Mapper;
 import org.gdrlogs.web.entity.MagieLogEP;
 import org.gdrlogs.web.entity.SysLogEP;
@@ -28,8 +25,6 @@ import fr.laposte.gdrlogs.persistance.model.MagieLog;
 import fr.laposte.gdrlogs.persistance.model.SysOutLog;
 
 @Named
-@NoArgsConstructor
-@Data
 @Path("/logs")
 @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
 public class LogService {
@@ -42,6 +37,13 @@ public class LogService {
 	
 	@Inject
 	private Mapper dozerMapper;
+	
+
+	/**
+	 * Constructor
+	 */
+	public LogService() {}
+
 
 	@GET
 	@Path("/magielogs")
@@ -134,5 +136,52 @@ public class LogService {
  
 	}
 
+
+	/**
+	 * @return the magieLogDao
+	 */
+	public MagieLogDao getMagieLogDao() {
+		return magieLogDao;
+	}
+
+
+	/**
+	 * @param magieLogDao the magieLogDao to set
+	 */
+	public void setMagieLogDao(MagieLogDao magieLogDao) {
+		this.magieLogDao = magieLogDao;
+	}
+
+
+	/**
+	 * @return the sysLogDao
+	 */
+	public SysLogDao getSysLogDao() {
+		return sysLogDao;
+	}
+
+
+	/**
+	 * @param sysLogDao the sysLogDao to set
+	 */
+	public void setSysLogDao(SysLogDao sysLogDao) {
+		this.sysLogDao = sysLogDao;
+	}
+
+
+	/**
+	 * @return the dozerMapper
+	 */
+	public Mapper getDozerMapper() {
+		return dozerMapper;
+	}
+
+
+	/**
+	 * @param dozerMapper the dozerMapper to set
+	 */
+	public void setDozerMapper(Mapper dozerMapper) {
+		this.dozerMapper = dozerMapper;
+	}
 	
 }
